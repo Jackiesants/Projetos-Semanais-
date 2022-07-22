@@ -1,0 +1,13 @@
+Pergunta: Sabe6 q uem são os alunos que entregaram o projeto do módulo 1 e estão com o conce2to em
+“Pronto” ou “Mais que pronto”
+
+select nome, conceito from alunos join entregas on alunos.cpf = entregas.aluno_cpf where entregas.conceito = "mais que pronto" AND entregas.modulo = 1
+
+Pergunta: Consultar quantos alunos tem em cada turma
+select turmas.nome, count(alunos.cpf) AS 'num de alunos por turma' from alunos join turmas on alunos.turmas_id = turmas.id group by turmas.nome
+
+Pergunta: Quantos projetos no total entre todas as turmas foram entregues com o conceito "ainda não esta pronto e "chegando lá"
+select count(entregas.id) AS 'num de projetos Ainda não esta pronto/Chegando lá' from entregas where conceito = "ainda não está pronto" or conceito = "chegando lá"
+
+Pergunta: Qual turma tem maior qnt de projetos no "mais que pronto"
+select max(turmas.nome) from turmas join alunos on alunos.turmas_id = turmas.id join entregas on entregas.aluno_cpf = alunos.cpf where conceito = "mais que pronto"
